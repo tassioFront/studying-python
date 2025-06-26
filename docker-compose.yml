@@ -14,7 +14,9 @@ services:
       - "5432:5432"
 
   web:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: datapulse_web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
