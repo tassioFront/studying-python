@@ -5,7 +5,6 @@ services:
     plan: free
     region: oregon
     dockerfilePath: backend/Dockerfile
-    contextPath: backend
     buildFilter:
       paths:
         - backend/**/*
