@@ -15,6 +15,12 @@ services:
         generateValue: true
       - key: ALLOWED_HOSTS
         value: "*"
+      - key: SUPERUSER_EMAIL
+        value: "tassio72@hotmail.com"
+      - key: SUPERUSER_NAME
+        value: "Admin User"
+      - key: SUPERUSER_PASSWORD
+        generateValue: true
       - key: DB_NAME
         fromDatabase:
           name: datapulse-db
