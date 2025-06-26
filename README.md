@@ -1,65 +1,65 @@
 # 🛠️ Dev Notes – DataPulse Backend
 
-Este arquivo contém boas práticas, dicas e comandos úteis para desenvolver com Django + Docker neste projeto.
+This file contains best practices, tips, and useful commands for developing with Django + Docker in this project.
 
 ---
 
-## 🚀 Comandos úteis
+## 🚀 Useful Commands
 
-### Subir o ambiente com Docker
+### Start the environment with Docker
 
 ```bash
 docker compose up --build
 ```
 
-### Acessar o terminal da aplicação Django
+### Access the Django application terminal
 
 ```bash
 docker compose exec web bash
 ```
 
-### Criar migrações (sempre que um modelo mudar)
+### Create migrations (whenever a model changes)
 
 ```bash
 docker compose exec web python manage.py makemigrations
 ```
 
-### Aplicar migrações no banco de dados
+### Apply migrations to the database
 
 ```bash
 docker compose exec web python manage.py migrate
 ```
 
-### Criar um superusuário (admin)
+### Create a superuser (admin)
 
 ```bash
 docker compose exec web python manage.py createsuperuser
 ```
 
-## 📌 Boas práticas e pegadinhas
+## 📌 Best practices and gotchas
 
-1. Sempre crie as migrações antes de migrar
-   Se você criar um modelo novo (como User) e tentar rodar migrate direto sem makemigrations, o Django não vai entender que precisa criar aquela tabela, e isso causará erros de “tabela não existe”.
+1. Always create migrations before migrating
+   If you create a new model (like User) and try to run migrate directly without makemigrations, Django won't understand that it needs to create that table, and this will cause "table does not exist" errors
 
-👉 Sempre execute:
+👉 Always run:
 
 ```bash
 docker compose exec web python manage.py makemigrations
 ```
 
-2. Ordem correta quando criar modelo de usuário customizado
-   Se estiver usando AUTH_USER_MODEL, você precisa registrar o modelo antes de rodar qualquer migração.
-   Caso contrário, o app admin tentará usar o modelo padrão do Django.
+2. Correct order when creating custom user model
+   If you're using AUTH_USER_MODEL, you need to register the model before running any migration.
+   Otherwise, the admin app will try to use Django's default model.
 
-3. Resetando o banco de dados (em dev)
-   Se algo der muito errado nas migrações:
+3. Resetting the database (in dev)
+   If something goes very wrong with migrations:
 
 ```bash
-docker compose down -v       # apaga containers e banco
-rm -rf backend/*/migrations  # apaga todas as migrações (exceto __init__.py)
+docker compose down -v       # deletes containers and database
+rm -rf backend/*/migrations  # deletes all migrations (except __init__.py)
 ```
 
-Depois, recrie:
+Then, recreate:
 
 ```bash
 docker compose up --build
@@ -67,12 +67,12 @@ docker compose exec web python manage.py makemigrations
 docker compose exec web python manage.py migrate
 ```
 
-## ✅ Checklist para criar um novo app Django
+## ✅ Checklist for creating a new Django app
 
-1. docker compose exec web python manage.py startapp nome_do_app
+1. docker compose exec web python manage.py startapp app_name
 
-2. Adicionar o app no INSTALLED_APPS
+2. Add the app to INSTALLED_APPS
 
-3. Criar modelos, serializers, views e rotas
+3. Create models, serializers, views and routes
 
-4. Rodar makemigrations e migrate
+4. Run makemigrations and migrate
