@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: datapulse-backend
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: backend/Dockerfile
+    buildFilter:
+      paths:
+        - backend/**/*
+    envVars:
+      - key: DEBUG
+        value: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DB_NAME
+        fromDatabase:
+          name: datapulse-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: datapulse-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: datapulse-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: datapulse-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: datapulse-db
+          property: port
+databases:
+  - name: datapulse-db
+    plan: free
