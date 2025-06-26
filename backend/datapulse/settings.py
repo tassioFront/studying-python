@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b$&u!dkgu!(ym^k4$@^&*8+shs2d(s8edu9dx%^c=v%14sou*l'
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-b$&u!dkgu!(ym^k4$@^&*8+shs2d(s8edu9dx%^c=v%14sou*l')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Application definition
 
@@ -83,11 +84,11 @@ WSGI_APPLICATION = 'datapulse.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'datapulse',
-        'USER': 'datapulse',
-        'PASSWORD': 'datapulse',
-        'HOST': 'db',
-        'PORT': '5432',
+        'NAME': config('DB_NAME', default='datapulse'),
+        'USER': config('DB_USER', default='datapulse'),
+        'PASSWORD': config('DB_PASSWORD', default='datapulse'),
+        'HOST': config('DB_HOST', default='db'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 

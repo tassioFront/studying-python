@@ -13,6 +13,8 @@ services:
         value: false
       - key: SECRET_KEY
         generateValue: true
+      - key: ALLOWED_HOSTS
+        value: "*"
       - key: DB_NAME
         fromDatabase:
           name: datapulse-db
