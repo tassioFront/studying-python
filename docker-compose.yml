@@ -31,6 +31,24 @@ services:
       - DB_PASSWORD=datapulse
       - DB_HOST=db
       - DB_PORT=5432
+      - DEBUG=1
+      - SECRET_KEY=your-secret-key-for-development
+
+  test:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: datapulse_test
+    command: python manage.py test --settings=datapulse.test_settings -v 2
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SECRET_KEY=test-secret-key
+      - DEBUG=1
+      - DB_PASSWORD=datapulse
+      - DB_HOST=db
+      - DB_PORT=5432
 
 volumes:
   postgres_data:

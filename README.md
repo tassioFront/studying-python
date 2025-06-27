@@ -76,3 +76,36 @@ docker compose exec web python manage.py migrate
 3. Create models, serializers, views and routes
 
 4. Run makemigrations and migrate
+
+## Running tests with Docker
+
+### Basic test commands (with unbuffered output to see test group messages):
+
+```bash
+# Run all tests with visible group messages
+docker-compose exec web env PYTHONUNBUFFERED=1 python manage.py test --settings=datapulse.test_settings -v 2
+
+# Run specific test groups
+docker-compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests --settings=datapulse.test_settings -v 2
+
+# Run JWT token tests only
+docker-compose exec web env PYTHONUNBUFFERED=1 python manage.py test tests.test_token_api --settings=datapulse.test_settings -v 2
+```
+
+### Run specific test classes or methods:
+
+```bash
+# Run only User Model tests
+docker-compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase --settings=datapulse.test_settings -v 2
+
+# Run a single specific test
+docker-compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase.test_user_string_representation --settings=datapulse.test_settings -v 2
+```
+
+### Quick test commands (without group messages):
+
+```bash
+docker-compose run --rm test
+```
+
+**Note:** Use `env PYTHONUNBUFFERED=1` and `-v 2` flags to see the colorful test group messages with emojis!

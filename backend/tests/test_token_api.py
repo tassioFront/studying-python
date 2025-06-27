@@ -11,6 +11,14 @@ User = get_user_model()
 class TokenAPITestCase(APITestCase):
     """Test cases for JWT token endpoints"""
     
+    @classmethod
+    def setUpClass(cls):
+        """Print test group message"""
+        super().setUpClass()
+        print("\n" + "="*50)
+        print("🧪 RUNNING TESTS FOR JWT TOKEN API")
+        print("="*50)
+    
     def setUp(self):
         """Set up test data before each test"""
         # Create a test user
