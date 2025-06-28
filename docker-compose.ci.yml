@@ -1,0 +1,39 @@
+services:
+  # CI Test Service - uses SQLite for speed
+  ci-test:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      - SECRET_KEY=test-secret-key-for-ci
+      - DEBUG=0
+      - PYTHONUNBUFFERED=1
+    command: python manage.py test --settings=datapulse.test_settings -v 2
+    volumes:
+      - ./backend:/app
+      - coverage-data:/coverage
+
+  # CI Lint Service
+  ci-lint:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: sh -c "pip install flake8 && flake8 --count --max-complexity=10 --max-line-length=127 --statistics ."
+    volumes:
+      - ./backend:/app
+
+  # CI Security Service
+  ci-security:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: sh -c "pip install safety bandit && safety check && bandit -r ."
+    volumes:
+      - ./backend:/app
+
+volumes:
+  coverage-data:

@@ -109,3 +109,40 @@ docker-compose run --rm test
 ```
 
 **Note:** Use `env PYTHONUNBUFFERED=1` and `-v 2` flags to see the colorful test group messages with emojis!
+
+---
+
+## 🚀 CI/CD Pipeline
+
+This project includes a **Docker-based** GitHub Actions CI/CD pipeline that runs automatically on every push and pull request. **Everything runs in Docker** - no need to install Python or dependencies on the CI runner!
+
+### 🔄 What the CI/CD pipeline does:
+
+1. **🧪 Tests**: Runs all Django tests with the beautiful test group messages
+2. **🔍 Linting**: Checks code quality with flake8
+3. ** Security**: Scans for vulnerabilities with bandit and safety
+4. **🐳 Docker**: Builds and tests Docker images
+5. **🚀 Deploy**: Automatic deployment to staging (develop branch) and production (main branch)
+
+### 🔧 CI Configuration Files:
+
+- `.github/workflows/ci.yml` - Main CI/CD pipeline
+- `docker-compose.ci.yml` - Docker services for CI
+- `backend/.flake8` - Linting configuration
+- `backend/pyproject.toml` - Tool configurations
+- `.pre-commit-config.yaml` - Pre-commit hooks (optional)
+
+### � Local CI Testing:
+
+You can run the same CI checks locally using Docker:
+
+```bash
+# Run all tests with the beautiful group messages
+docker-compose -f docker-compose.ci.yml run --rm ci-test
+
+# Run linting checks
+docker-compose -f docker-compose.ci.yml run --rm ci-lint
+
+# Run security checks
+docker-compose -f docker-compose.ci.yml run --rm ci-security
+```

@@ -1,0 +1,20 @@
+# Development dependencies
+-r requirements.txt
+
+# Testing
+coverage>=7.0
+pytest-django>=4.5
+pytest-cov>=4.0
+
+# Linting and formatting
+flake8>=6.0
+black>=23.0
+isort>=5.12
+
+# Security
+bandit>=1.7
+safety>=2.3
+
+# Development tools
+django-debug-toolbar>=4.0
+pre-commit>=3.0
