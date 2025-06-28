@@ -17,15 +17,15 @@ jobs:
 
       - name: 🧪 Run tests in Docker
         run: |
-          docker-compose -f docker-compose.ci.yml run --rm ci-test
+          docker compose -f docker-compose.ci.yml run --rm ci-test
 
       - name: 🔍 Run linting in Docker
         run: |
-          docker-compose -f docker-compose.ci.yml run --rm ci-lint
+          docker compose -f docker-compose.ci.yml run --rm ci-lint
 
       - name: 🔒 Run security checks in Docker
         run: |
-          docker-compose -f docker-compose.ci.yml run --rm ci-security
+          docker compose -f docker-compose.ci.yml run --rm ci-security
 
   docker-build:
     name: 🐳 Docker Build Test
@@ -38,8 +38,8 @@ jobs:
 
       - name: 🔨 Build and test main Docker image
         run: |
-          docker-compose build web
-          docker-compose run --rm web python manage.py check --settings=datapulse.test_settings
+          docker compose build web
+          docker compose run --rm web python manage.py check --settings=datapulse.test_settings
 
   notify:
     name: 📢 Notify Results
