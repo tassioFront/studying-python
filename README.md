@@ -122,7 +122,6 @@ This project includes a **Docker-based** GitHub Actions CI/CD pipeline that runs
 2. **🔍 Linting**: Checks code quality with flake8
 3. ** Security**: Scans for vulnerabilities with bandit and safety
 4. **🐳 Docker**: Builds and tests Docker images
-5. **🚀 Deploy**: Automatic deployment to staging (develop branch) and production (main branch)
 
 ### 🔧 CI Configuration Files:
 
