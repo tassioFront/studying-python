@@ -2,7 +2,7 @@
 Test settings for Django project
 """
 
-from .settings import *
+from .settings import *  # noqa: F403, F401
 
 # Use SQLite for testing (faster and no external dependencies)
 DATABASES = {
