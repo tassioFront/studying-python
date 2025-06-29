@@ -30,7 +30,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR("password is required"))
             return
 
-        if not User.objects.filter(email=email).exists():
+        if not User.objects.filter(type=User.SUPERUSER).exists():
             User.objects.create_superuser(email=email, name=name, password=password)
             self.stdout.write(
                 self.style.SUCCESS(
@@ -38,6 +38,9 @@ class Command(BaseCommand):
                 )
             )
         else:
+            superuser_emails = list(User.objects.filter(type=User.SUPERUSER).values_list('email', flat=True))
             self.stdout.write(
-                self.style.WARNING(f"Superuser teammate with email {email} already exists")
+                self.style.WARNING(
+                    f"Superuser teammate already exists: {', '.join(superuser_emails)}"
+                )
             )

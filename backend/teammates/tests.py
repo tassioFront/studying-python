@@ -133,6 +133,47 @@ class UserRegistrationTestCase(APITestCase):
         # Assert response
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
+    def test_register_superuser_type_blocked(self):
+        """Test that superuser type is blocked in registration"""
+        superuser_data = {
+            "email": "blocked.superuser@example.com",
+            "name": "Blocked Superuser",
+            "type": "superuser",
+            "password": "securepassword123",
+        }
+
+        response = self.client.post(self.register_url, superuser_data)
+
+        # Assert response
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("type", response.data)
+        self.assertIn("Superuser teammates can only be created", str(response.data["type"][0]))
+
+        # Assert user was NOT created in database
+        self.assertFalse(
+            User.objects.filter(email=superuser_data["email"]).exists()
+        )
+
+    def test_register_admin_type_allowed(self):
+        """Test that admin type is allowed in registration"""
+        admin_data = {
+            "email": "admin.teammate@example.com",
+            "name": "Admin Teammate",
+            "type": "admin",
+            "password": "securepassword123",
+        }
+
+        response = self.client.post(self.register_url, admin_data)
+
+        # Assert response
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data["type"], "admin")
+
+        # Assert user was created in database
+        self.assertTrue(
+            User.objects.filter(email=admin_data["email"], type="admin").exists()
+        )
+
 
 class UserProfileTestCase(APITestCase):
     """Test cases for user profile endpoint"""
