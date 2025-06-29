@@ -1,8 +1,7 @@
 Django>=5.0
 djangorestframework
 psycopg2-binary
-djangorestframework-simplejwt>=5.6.0
-PyJWT>=2.10.1
+djangorestframework-simplejwt
 python-decouple
 gunicorn
 whitenoise
