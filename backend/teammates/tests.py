@@ -20,7 +20,7 @@ class UserRegistrationTestCase(APITestCase):
 
     def setUp(self):
         """Set up test data before each test"""
-        self.register_url = "/api/users/register/"
+        self.register_url = "/api/teammates/register/"
         self.valid_user_data = {
             "email": "testuser@example.com",
             "name": "Test User",
@@ -147,7 +147,7 @@ class UserProfileTestCase(APITestCase):
 
     def setUp(self):
         """Set up test data before each test"""
-        self.profile_url = "/api/users/me/"  # Direct URL path
+        self.profile_url = "/api/teammates/me/"  # Direct URL path
 
         # Create test user
         self.user_data = {

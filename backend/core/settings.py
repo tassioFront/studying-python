@@ -40,7 +40,7 @@ ALLOWED_HOSTS = config(
 # Application definition
 
 INSTALLED_APPS = [
-    "users",
+    "teammates",
     "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -153,4 +153,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom user model
 
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "teammates.User"

@@ -86,7 +86,7 @@ docker compose exec web python manage.py migrate
 docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test --settings=core.test_settings -v 2
 
 # Run specific test groups
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests --settings=core.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test teammates.tests --settings=core.test_settings -v 2
 
 # Run JWT token tests only
 docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test tests.test_token_api --settings=core.test_settings -v 2
@@ -96,10 +96,10 @@ docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test tests.test_
 
 ```bash
 # Run only User Model tests
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase --settings=core.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test teammates.tests.UserModelTestCase --settings=core.test_settings -v 2
 
 # Run a single specific test
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase.test_user_string_representation --settings=core.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test teammates.tests.UserModelTestCase.test_user_string_representation --settings=core.test_settings -v 2
 ```
 
 ### Quick test commands (without group messages):
