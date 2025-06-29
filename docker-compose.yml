@@ -3,11 +3,11 @@ version: "3.9"
 services:
   db:
     image: postgres:15
-    container_name: datapulse_db
+    container_name: core_db
     environment:
-      POSTGRES_USER: datapulse
-      POSTGRES_PASSWORD: datapulse
-      POSTGRES_DB: datapulse
+      POSTGRES_USER: core
+      POSTGRES_PASSWORD: core
+      POSTGRES_DB: core
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    container_name: datapulse_web
+    container_name: core_web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/app
@@ -26,9 +26,9 @@ services:
     depends_on:
       - db
     environment:
-      - DB_NAME=datapulse
-      - DB_USER=datapulse
-      - DB_PASSWORD=datapulse
+      - DB_NAME=core
+      - DB_USER=core
+      - DB_PASSWORD=core
       - DB_HOST=db
       - DB_PORT=5432
       - DEBUG=1
@@ -38,15 +38,15 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    container_name: datapulse_test
-    command: python manage.py test --settings=datapulse.test_settings -v 2
+    container_name: core_test
+    command: python manage.py test --settings=core.test_settings -v 2
     volumes:
       - ./backend:/app
     environment:
       - PYTHONUNBUFFERED=1
       - SECRET_KEY=test-secret-key
       - DEBUG=1
-      - DB_PASSWORD=datapulse
+      - DB_PASSWORD=core
       - DB_HOST=db
       - DB_PORT=5432
 

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: datapulse-backend
+    name: core-backend
     env: docker
     plan: free
     region: oregon
@@ -23,24 +23,24 @@ services:
         generateValue: true
       - key: DB_NAME
         fromDatabase:
-          name: datapulse-db
+          name: core-db
           property: database
       - key: DB_USER
         fromDatabase:
-          name: datapulse-db
+          name: core-db
           property: user
       - key: DB_PASSWORD
         fromDatabase:
-          name: datapulse-db
+          name: core-db
           property: password
       - key: DB_HOST
         fromDatabase:
-          name: datapulse-db
+          name: core-db
           property: host
       - key: DB_PORT
         fromDatabase:
-          name: datapulse-db
+          name: core-db
           property: port
 databases:
-  - name: datapulse-db
+  - name: core-db
     plan: free
