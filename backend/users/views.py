@@ -1,9 +1,11 @@
 from rest_framework import generics, permissions
-from .models import User
-from .serializers import UserSerializer, RegisterSerializer
+
+from .serializers import RegisterSerializer, UserSerializer
+
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
+
 
 class ProfileView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
