@@ -5,9 +5,9 @@ from decouple import config
 
 
 # it is a fake project hosted on Render
-# This command creates a superuser if one does not exist then I can use the free Render database
+# This command creates a superuser teammate if one does not exist
 class Command(BaseCommand):
-    help = "Create a superuser if one does not exist"
+    help = "Create a superuser teammate if one does not exist"
 
     def handle(self, *args, **options):
         User = get_user_model()
@@ -34,10 +34,10 @@ class Command(BaseCommand):
             User.objects.create_superuser(email=email, name=name, password=password)
             self.stdout.write(
                 self.style.SUCCESS(
-                    f"Superuser created successfully with email: {email}"
+                    f"Superuser teammate created successfully with email: {email}"
                 )
             )
         else:
             self.stdout.write(
-                self.style.WARNING(f"Superuser with email {email} already exists")
+                self.style.WARNING(f"Superuser teammate with email {email} already exists")
             )
