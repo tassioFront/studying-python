@@ -39,7 +39,7 @@ jobs:
       - name: 🔨 Build and test main Docker image
         run: |
           docker compose build web
-          docker compose run --rm web python manage.py check --settings=datapulse.test_settings
+          docker compose run --rm web python manage.py check --settings=core.test_settings
 
   notify:
     name: 📢 Notify Results

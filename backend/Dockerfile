@@ -12,4 +12,4 @@ RUN pip install --upgrade pip \
 
 COPY backend/ /app/
 
-CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && python manage.py create_superuser_if_none && gunicorn datapulse.wsgi:application --bind 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && python manage.py create_superuser_if_none && gunicorn core.wsgi:application --bind 0.0.0.0:8000"]

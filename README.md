@@ -1,4 +1,4 @@
-# 🛠️ Dev Notes – DataPulse Backend
+# 🛠️ Dev Notes – Core Backend
 
 This file contains best practices, tips, and useful commands for developing with Django + Docker in this project.
 
@@ -83,23 +83,23 @@ docker compose exec web python manage.py migrate
 
 ```bash
 # Run all tests with visible group messages
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test --settings=datapulse.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test --settings=core.test_settings -v 2
 
 # Run specific test groups
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests --settings=datapulse.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests --settings=core.test_settings -v 2
 
 # Run JWT token tests only
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test tests.test_token_api --settings=datapulse.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test tests.test_token_api --settings=core.test_settings -v 2
 ```
 
 ### Run specific test classes or methods:
 
 ```bash
 # Run only User Model tests
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase --settings=datapulse.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase --settings=core.test_settings -v 2
 
 # Run a single specific test
-docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase.test_user_string_representation --settings=datapulse.test_settings -v 2
+docker compose exec web env PYTHONUNBUFFERED=1 python manage.py test users.tests.UserModelTestCase.test_user_string_representation --settings=core.test_settings -v 2
 ```
 
 ### Quick test commands (without group messages):
