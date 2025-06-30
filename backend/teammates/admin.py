@@ -6,17 +6,17 @@ from .models import User
 
 class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
-    list_display = ("email", "name", "is_staff", "is_active", "date_joined")
-    list_filter = ("is_staff", "is_active", "date_joined")
+    list_display = ("email", "name", "type", "is_active", "date_joined")
+    list_filter = ("type", "is_active", "date_joined")
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         ("Personal info", {"fields": ("name",)}),
+        ("Teammate info", {"fields": ("type",)}),
         (
             "Permissions",
             {
                 "fields": (
                     "is_active",
-                    "is_staff",
                     "is_superuser",
                     "groups",
                     "user_permissions",
@@ -32,7 +32,7 @@ class UserAdmin(BaseUserAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "name", "password1", "password2"),
+                "fields": ("email", "name", "type", "password1", "password2"),
             },
         ),
     )
