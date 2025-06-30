@@ -24,14 +24,14 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    ADMIN = 'admin'
-    SUPERUSER = 'superuser'
-    DEVELOPER = 'developer'
+    ADMIN = "admin"
+    SUPERUSER = "superuser"
+    DEVELOPER = "developer"
 
     TYPE_CHOICES = [
-        (ADMIN, 'Admin'),
-        (SUPERUSER, 'Superuser'),
-        (DEVELOPER, 'Developer'),
+        (ADMIN, "Admin"),
+        (SUPERUSER, "Superuser"),
+        (DEVELOPER, "Developer"),
     ]
 
     email = models.EmailField(unique=True)

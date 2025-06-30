@@ -38,7 +38,9 @@ class Command(BaseCommand):
                 )
             )
         else:
-            superuser_emails = list(User.objects.filter(type=User.SUPERUSER).values_list('email', flat=True))
+            superuser_emails = list(
+                User.objects.filter(type=User.SUPERUSER).values_list("email", flat=True)
+            )
             self.stdout.write(
                 self.style.WARNING(
                     f"Superuser teammate already exists: {', '.join(superuser_emails)}"

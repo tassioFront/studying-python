@@ -147,12 +147,12 @@ class UserRegistrationTestCase(APITestCase):
         # Assert response
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("type", response.data)
-        self.assertIn("Superuser teammates can only be created", str(response.data["type"][0]))
+        self.assertIn(
+            "Superuser teammates can only be created", str(response.data["type"][0])
+        )
 
         # Assert user was NOT created in database
-        self.assertFalse(
-            User.objects.filter(email=superuser_data["email"]).exists()
-        )
+        self.assertFalse(User.objects.filter(email=superuser_data["email"]).exists())
 
     def test_register_admin_type_allowed(self):
         """Test that admin type is allowed in registration"""
