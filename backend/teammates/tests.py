@@ -9,13 +9,13 @@ User = get_user_model()
 
 
 class UserRegistrationTestCase(APITestCase):
-    """Test cases for user registration endpoint"""
+    """Test cases for teammates registration endpoint"""
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         print("\n" + "=" * 50)
-        print("🧪 RUNNING TESTS FOR USER REGISTRATION")
+        print("🧪 RUNNING TESTS FOR TEAMMATES REGISTRATION")
         print("=" * 50)
 
     def setUp(self):
@@ -183,7 +183,7 @@ class UserProfileTestCase(APITestCase):
         """Print test group message"""
         super().setUpClass()
         print("\n" + "=" * 50)
-        print("🧪 RUNNING TESTS FOR USER PROFILE")
+        print("🧪 RUNNING TESTS FOR TEAMMATES PROFILE")
         print("=" * 50)
 
     def setUp(self):
@@ -291,7 +291,7 @@ class UserModelTestCase(TestCase):
         """Print test group message"""
         super().setUpClass()
         print("\n" + "=" * 50)
-        print("🧪 RUNNING TESTS FOR USER MODEL")
+        print("🧪 RUNNING TESTS FOR TEAMMATES MODEL")
         print("=" * 50)
 
     def test_create_user_success(self):

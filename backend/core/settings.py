@@ -41,6 +41,7 @@ ALLOWED_HOSTS = config(
 
 INSTALLED_APPS = [
     "teammates",
+    "users",
     "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "core.authentication.MultiUserJWTAuthentication",
     )
 }
 
@@ -152,5 +153,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Custom user model
-
 AUTH_USER_MODEL = "teammates.User"
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",  # Default backend for teammates
+    "core.auth_backends.MultiUserBackend",  # Custom backend for multi-user auth
+]
