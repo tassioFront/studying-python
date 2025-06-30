@@ -27,13 +27,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     ADMIN = 'admin'
     SUPERUSER = 'superuser'
     DEVELOPER = 'developer'
-    
+
     TYPE_CHOICES = [
         (ADMIN, 'Admin'),
         (SUPERUSER, 'Superuser'),
         (DEVELOPER, 'Developer'),
     ]
-    
+
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
     type = models.CharField(max_length=20, choices=TYPE_CHOICES, default=DEVELOPER)
