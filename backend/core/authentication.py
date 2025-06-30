@@ -11,15 +11,11 @@ class MultiUserJWTAuthentication(JWTAuthentication):
     """
     
     def get_user(self, validated_token):
-        """
-        Attempts to find and return a user using the given validated token.
-        """
         try:
             user_id = validated_token['user_id']
         except KeyError:
             raise InvalidToken('Token contained no recognizable user identification')
 
-        # Try to get user from default model (teammates) first
         TeammateUser = get_user_model()
         try:
             user = TeammateUser.objects.get(pk=user_id)
@@ -28,7 +24,6 @@ class MultiUserJWTAuthentication(JWTAuthentication):
         except TeammateUser.DoesNotExist:
             pass
 
-        # Try to get user from client users model
         try:
             user = ClientUser.objects.get(pk=user_id)
             if user.is_active:

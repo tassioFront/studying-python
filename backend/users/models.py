@@ -9,7 +9,6 @@ class User(models.Model):
     This is separate from teammates (internal team members)
     """
     
-    # User status choices
     ACTIVE = 'active'
     INACTIVE = 'inactive'
     SUSPENDED = 'suspended'
