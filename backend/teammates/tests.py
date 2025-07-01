@@ -9,13 +9,13 @@ User = get_user_model()
 
 
 class UserRegistrationTestCase(APITestCase):
-    """Test cases for user registration endpoint"""
+    """Test cases for teammates registration endpoint"""
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         print("\n" + "=" * 50)
-        print("🧪 RUNNING TESTS FOR USER REGISTRATION")
+        print("🧪 RUNNING TESTS FOR TEAMMATES REGISTRATION")
         print("=" * 50)
 
     def setUp(self):
@@ -147,12 +147,12 @@ class UserRegistrationTestCase(APITestCase):
         # Assert response
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("type", response.data)
-        self.assertIn("Superuser teammates can only be created", str(response.data["type"][0]))
+        self.assertIn(
+            "Superuser teammates can only be created", str(response.data["type"][0])
+        )
 
         # Assert user was NOT created in database
-        self.assertFalse(
-            User.objects.filter(email=superuser_data["email"]).exists()
-        )
+        self.assertFalse(User.objects.filter(email=superuser_data["email"]).exists())
 
     def test_register_admin_type_allowed(self):
         """Test that admin type is allowed in registration"""
@@ -183,7 +183,7 @@ class UserProfileTestCase(APITestCase):
         """Print test group message"""
         super().setUpClass()
         print("\n" + "=" * 50)
-        print("🧪 RUNNING TESTS FOR USER PROFILE")
+        print("🧪 RUNNING TESTS FOR TEAMMATES PROFILE")
         print("=" * 50)
 
     def setUp(self):
@@ -291,7 +291,7 @@ class UserModelTestCase(TestCase):
         """Print test group message"""
         super().setUpClass()
         print("\n" + "=" * 50)
-        print("🧪 RUNNING TESTS FOR USER MODEL")
+        print("🧪 RUNNING TESTS FOR TEAMMATES MODEL")
         print("=" * 50)
 
     def test_create_user_success(self):
