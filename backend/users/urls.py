@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     # Teammate-managed user endpoints (require teammate authentication)
     path("", views.UserListCreateView.as_view(), name="user-list-create"),
-    path("<int:pk>/", views.UserDetailView.as_view(), name="user-detail"),
+    path("<uuid:pk>/", views.UserDetailView.as_view(), name="user-detail"),
     # User self-service authentication endpoints
     path("register/", views.UserRegistrationView.as_view(), name="user-register"),
     path("login/", views.UserLoginView.as_view(), name="user-login"),
