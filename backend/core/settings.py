@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
 
 from decouple import config
 
@@ -161,7 +161,7 @@ AUTHENTICATION_BACKENDS = [
 
 # JWT Settings
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1), 
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
