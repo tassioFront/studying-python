@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #34495e; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; }
+      .small-text { font-family: Arial, sans-serif; font-size: 10px; fill: 000; }
+      .api-box { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .model-box { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .auth-box { fill: #f39c12; stroke: #e67e22; stroke-width: 2; }
+      .db-box { fill: #27ae60; stroke: #229954; stroke-width: 2; }
+      .arrow { stroke: #34495e; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .dotted-arrow { stroke: #7f8c8d; stroke-width: 1; stroke-dasharray: 5,5; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#ecf0f1" />
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" class="title">🧠 users-service Architecture (Django)</text>
+  
+  <!-- API Layer -->
+  <rect x="50" y="80" width="700" height="80" class="api-box" rx="5" />
+  <text x="400" y="105" text-anchor="middle" class="subtitle" fill="white">🌐 API REST Layer</text>
+  <text x="150" y="125" text-anchor="middle" class="text" fill="white">JWT Auth</text>
+  <text x="300" y="125" text-anchor="middle" class="text" fill="white">Teammates API</text>
+  <text x="500" y="125" text-anchor="middle" class="text" fill="white">Users API</text>
+  <text x="650" y="125" text-anchor="middle" class="text" fill="white">Admin Panel</text>
+  <text x="150" y="140" text-anchor="middle" class="small-text" fill="white">/api/token/</text>
+  <text x="300" y="140" text-anchor="middle" class="small-text" fill="white">/api/teammates/</text>
+  <text x="500" y="140" text-anchor="middle" class="small-text" fill="white">/api/users/</text>
+  <text x="650" y="140" text-anchor="middle" class="small-text" fill="white">/admin/</text>
+  
+  <!-- Authentication Layer -->
+  <rect x="100" y="200" width="600" height="80" class="auth-box" rx="5" />
+  <text x="400" y="225" text-anchor="middle" class="subtitle" fill="white">🔐 Authentication &amp; Authorization</text>
+  <text x="200" y="245" text-anchor="middle" class="text" fill="white">JWT Tokens (SimpleJWT)</text>
+  <text x="450" y="245" text-anchor="middle" class="text" fill="white">DRF Permissions</text>
+  <text x="600" y="245" text-anchor="middle" class="text" fill="white">Multi-tenant</text>
+  <text x="400" y="265" text-anchor="middle" class="small-text" fill="white">🔮 Future: User authentication for project access</text>
+  
+  <!-- Business Logic Layer -->
+  <rect x="50" y="320" width="300" height="150" class="model-box" rx="5" />
+  <text x="200" y="345" text-anchor="middle" class="subtitle" fill="white">👥 Teammates Domain</text>
+  <text x="80" y="370" class="text" fill="white">• Admin users with auth</text>
+  <text x="80" y="390" class="text" fill="white">• Types: admin, dev, superuser</text>
+  <text x="80" y="410" class="text" fill="white">• Registration &amp; profiles</text>
+  <text x="80" y="430" class="text" fill="white">• Password management</text>
+  <text x="80" y="450" class="text" fill="white">• Team management</text>
+  
+  <rect x="400" y="320" width="300" height="150" class="model-box" rx="5" />
+  <text x="550" y="345" text-anchor="middle" class="subtitle" fill="white">👤 Users Domain</text>
+  <text x="430" y="370" class="text" fill="white">• Client users (future auth)</text>
+  <text x="430" y="390" class="text" fill="white">• Status: active/inactive</text>
+  <text x="430" y="410" class="text" fill="white">• Soft delete support</text>
+  <text x="430" y="430" class="text" fill="white">• Profile management</text>
+  <text x="430" y="450" class="text" fill="white">• Managed by teammates</text>
+  <text x="430" y="465" class="small-text" fill="white">🔮 Future: own projects view</text>
+  
+  <!-- Database Layer -->
+  <rect x="200" y="500" width="400" height="80" class="db-box" rx="5" />
+  <text x="400" y="525" text-anchor="middle" class="subtitle" fill="white">🗄️ PostgreSQL Database</text>
+  <text x="300" y="550" text-anchor="middle" class="text" fill="white">teammates_user</text>
+  <text x="500" y="550" text-anchor="middle" class="text" fill="white">users_user</text>
+  <text x="300" y="565" text-anchor="middle" class="small-text" fill="white">auth + profile data</text>
+  <text x="500" y="565" text-anchor="middle" class="small-text" fill="white">profile data (+ future auth)</text>
+  
+  <!-- Arrows -->
+  <!-- API to Auth -->
+  <line x1="400" y1="160" x2="400" y2="200" class="arrow" />
+  
+  <!-- Auth to Business Logic -->
+  <line x1="300" y1="280" x2="200" y2="320" class="arrow" />
+  <line x1="500" y1="280" x2="550" y2="320" class="arrow" />
+  
+  <!-- Business Logic to Database -->
+  <line x1="200" y1="470" x2="300" y2="500" class="arrow" />
+  <line x1="550" y1="470" x2="500" y2="500" class="arrow" />
+  
+  <!-- Inter-domain communication -->
+  <line x1="400" y1="395" x2="400" y2="395" class="dotted-arrow" stroke-dasharray="5,5" />
+  <text x="375" y="390" class="small-text">manages →</text>
+  
+  <!-- External indicators -->
+  <circle cx="30" cy="120" r="8" fill="#9b59b6" />
+  <text x="15" y="145" class="small-text">Client Apps</text>
+  
+  <circle cx="770" cy="120" r="8" fill="#9b59b6" />
+  <text x="755" y="145" class="small-text">Admin UI</text>
+  
+  <!-- Connection lines from external -->
+  <line x1="38" y1="120" x2="50" y2="120" class="dotted-arrow" />
+  <line x1="750" y1="120" x2="770" y2="120" class="dotted-arrow" />
+  
+</svg>
