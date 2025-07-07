@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     environment:
-      - SECRET_KEY=test-secret-key-for-ci
+      - SECRET_KEY=your-secret-key-for-development
       - DEBUG=0
       - PYTHONUNBUFFERED=1
     command: python manage.py test --settings=core.test_settings -v 2

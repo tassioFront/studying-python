@@ -42,7 +42,7 @@ services:
       - ./backend:/app
     environment:
       - PYTHONUNBUFFERED=1
-      - SECRET_KEY=test-secret-key
+      - SECRET_KEY=your-secret-key-for-development
       - DEBUG=1
       - DB_PASSWORD=core
       - DB_HOST=db
