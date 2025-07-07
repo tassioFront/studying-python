@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -5,7 +7,6 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.utils import timezone
-import uuid
 
 
 class UserManager(BaseUserManager):
@@ -26,7 +27,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    
+
     ADMIN = "admin"
     SUPERUSER = "superuser"
     DEVELOPER = "developer"

@@ -1,7 +1,8 @@
+import uuid
+
 from django.contrib.auth.hashers import check_password, make_password
 from django.db import models
 from django.utils import timezone
-import uuid
 
 
 class User(models.Model):
@@ -9,7 +10,7 @@ class User(models.Model):
     Client User model - for external users/customers
     This is separate from teammates (internal team members)
     """
-    
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     ACTIVE = "active"
