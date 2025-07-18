@@ -4,6 +4,10 @@ This file contains best practices, tips, and useful commands for developing with
 
 ---
 
+## BEFORE YOU START
+
+Read here the whole project idea. Including, business logic, architecture, and how the services interact: [Project Idea](https://github.com/tassioFront/fubs?tab=readme-ov-file#fubs---project-management-microservices-studying-repo)
+
 ## 🚀 Useful Commands
 
 ### Start the environment with Docker
