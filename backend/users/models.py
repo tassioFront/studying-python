@@ -3,7 +3,7 @@ import uuid
 from django.contrib.auth.hashers import check_password, make_password
 from django.db import models
 from django.utils import timezone
-
+from .utils import USER_TYPE_CHOICES
 
 class User(models.Model):
     """
@@ -28,6 +28,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     phone = models.CharField(max_length=20, blank=True, null=True)
+    type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES.items(), default=USER_TYPE_CHOICES["member"])
 
     password = models.CharField(
         max_length=128,
