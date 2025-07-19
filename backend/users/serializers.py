@@ -81,7 +81,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def validate_type(self, value):
         """Prevent creating a user with type does match USER_TYPE_CHOICES"""
         if value not in dict(USER_TYPE_CHOICES).keys():
-            raise serializers.ValidationError(f"Invalid user type")
+            raise serializers.ValidationError(f"Invalid user type: {value}")
         return value
 
 
