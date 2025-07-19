@@ -5,7 +5,14 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("email", "get_full_name", "status", "date_joined", "last_login")
+    list_display = (
+        "email",
+        "get_full_name",
+        "status",
+        "date_joined",
+        "last_login",
+        "type",
+    )
     list_filter = ("status", "date_joined", "email_notifications")
     search_fields = ("email", "first_name", "last_name")
     ordering = ("-date_joined",)
@@ -14,7 +21,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (
             "Personal Information",
-            {"fields": ("email", "first_name", "last_name", "phone")},
+            {"fields": ("email", "first_name", "last_name", "phone", "type")},
         ),
         ("Status & Dates", {"fields": ("status", "date_joined", "last_login")}),
         ("Preferences", {"fields": ("email_notifications",)}),
