@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from .models import User
+from .utils import USER_TYPE_CHOICES
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -56,6 +57,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             "password",
             "password_confirm",
             "email_notifications",
+            "type",
         ]
 
     def validate_email(self, value):
@@ -75,6 +77,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+    def validate_type(self, value):
+        """Prevent creating a user with type does match USER_TYPE_CHOICES"""
+        if value not in dict(USER_TYPE_CHOICES).keys():
+            raise serializers.ValidationError(f"Invalid user type: {value}")
+        return value
 
 
 class UserAuthSerializer(serializers.Serializer):
