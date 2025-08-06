@@ -1,5 +1,7 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
+from .models import User
+
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
@@ -10,10 +12,11 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         - type: The user's type (e.g., role or user category).
         - is_active: Boolean indicating if the user account is active.
     """
+
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
         # Add custom claims
-        token["type"] = user.type
-        token["is_active"] = user.is_active
+        token["type"] = getattr(user, "type", None)
+        token["status"] = getattr(user, "status", User.INACTIVE)
         return token
