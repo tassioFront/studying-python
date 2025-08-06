@@ -10,7 +10,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     This serializer extends the default TokenObtainPairSerializer to include
     custom claims in the JWT token:
         - type: The user's type (e.g., role or user category).
-        - is_active: Boolean indicating if the user account is active.
+        - status: The user's status (e.g., active, inactive, suspended).
     """
 
     @classmethod
