@@ -123,11 +123,12 @@ class UserPasswordUpdateSerializer(serializers.Serializer):
 
 
 class UserTokenValidationSerializer(serializers.Serializer):
-    user_id = serializers.IntegerField(read_only=True)
+    user_id = serializers.UUIDField(read_only=True)
     email = serializers.EmailField(read_only=True)
     full_name = serializers.CharField(read_only=True)
     status = serializers.CharField(read_only=True)
     is_active = serializers.BooleanField(read_only=True)
+    type = serializers.CharField(read_only=True)
 
 
 class UserInitialPasswordSerializer(serializers.Serializer):

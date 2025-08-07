@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from users.jwt_serializers import CustomTokenObtainPairSerializer
+
 from .models import User
 from .serializers import (
     UserAuthSerializer,
@@ -64,8 +66,6 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 # User Authentication Views
-
-
 class UserRegistrationView(generics.CreateAPIView):
     """
     User registration endpoint - allows users to self-register
@@ -97,8 +97,8 @@ class UserLoginView(generics.GenericAPIView):
         user.last_login = timezone.now()
         user.save()
 
-        # Generate JWT tokens
-        refresh = RefreshToken.for_user(user)
+        # Generate JWT tokens with custom claims
+        refresh = CustomTokenObtainPairSerializer.get_token(user)
 
         return Response(
             {
@@ -224,6 +224,7 @@ def validate_user_token(request):
                 "full_name": user.get_full_name(),
                 "status": user.status,
                 "is_active": user.is_active,
+                "type": user.type,
             }
         )
         return Response(
