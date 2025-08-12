@@ -2,6 +2,7 @@ from django.utils import timezone
 
 from rest_framework import generics, permissions, status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -247,3 +248,16 @@ def validate_user_token(request):
             },
             status=status.HTTP_200_OK,
         )
+
+
+@api_view(["GET"])
+def get_user_by_email(request, email):
+    """
+    Get user details by email
+    GET /api/users/by-email/<email>/
+    """
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        raise NotFound("User not found.")
+    return Response(UserSerializer(user).data, status=status.HTTP_200_OK)

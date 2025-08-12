@@ -23,4 +23,6 @@ urlpatterns = [
     ),
     # Inter-service communication
     path("validate-token/", views.validate_user_token, name="user-validate-token"),
+    # Get user by email (path param)
+    path("by-email/<str:email>/", views.get_user_by_email, name="user-by-email"),
 ]
