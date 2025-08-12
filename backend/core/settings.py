@@ -66,7 +66,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "users.middleware.InternalJWTAuthMiddleware",
-
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -152,7 +151,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-
 # Custom user model
 AUTH_USER_MODEL = "teammates.User"
 
@@ -175,4 +173,4 @@ SIMPLE_JWT = {
 }
 
 
-INTERNAL_JWT_SECRET_KEY = config('INTERNAL_JWT_SECRET_KEY', default='internal-default')
+INTERNAL_JWT_SECRET_KEY = config("INTERNAL_JWT_SECRET_KEY", default="internal-default")

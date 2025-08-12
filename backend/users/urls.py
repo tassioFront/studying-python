@@ -1,10 +1,11 @@
-from django.urls import path,include
+from django.urls import include, path
 
-from . import views
-from . import views_internal
+from . import views, views_internal
 
 internal_patterns = [
-    path("by-email/<str:email>/", views_internal.get_user_by_email, name="user-by-email"),
+    path(
+        "by-email/<str:email>/", views_internal.get_user_by_email, name="user-by-email"
+    ),
     # Add more internal endpoints here
 ]
 
