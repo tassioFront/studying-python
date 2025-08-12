@@ -5,9 +5,10 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from urllib.parse import unquote
 from users.jwt_serializers import CustomTokenObtainPairSerializer
-
 from .models import User
 from .serializers import (
     UserAuthSerializer,
@@ -250,14 +251,3 @@ def validate_user_token(request):
         )
 
 
-@api_view(["GET"])
-def get_user_by_email(request, email):
-    """
-    Get user details by email
-    GET /api/users/by-email/<email>/
-    """
-    try:
-        user = User.objects.get(email=email)
-    except User.DoesNotExist:
-        raise NotFound("User not found.")
-    return Response(UserSerializer(user).data, status=status.HTTP_200_OK)

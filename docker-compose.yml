@@ -23,6 +23,8 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    env_file:
+      - .env
     environment:
       - DB_NAME=core
       - DB_USER=core
@@ -40,6 +42,8 @@ services:
     command: python manage.py test --settings=core.test_settings -v 2
     volumes:
       - ./backend:/app
+    env_file:
+      - .env
     environment:
       - PYTHONUNBUFFERED=1
       - SECRET_KEY=your-secret-key-for-development

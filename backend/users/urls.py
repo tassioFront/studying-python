@@ -1,6 +1,12 @@
-from django.urls import path
+from django.urls import path,include
 
 from . import views
+from . import views_internal
+
+internal_patterns = [
+    path("by-email/<str:email>/", views_internal.get_user_by_email, name="user-by-email"),
+    # Add more internal endpoints here
+]
 
 urlpatterns = [
     # Teammate-managed user endpoints (require teammate authentication)
@@ -23,6 +29,6 @@ urlpatterns = [
     ),
     # Inter-service communication
     path("validate-token/", views.validate_user_token, name="user-validate-token"),
-    # Get user by email (path param)
-    path("by-email/<str:email>/", views.get_user_by_email, name="user-by-email"),
+    # Internal: Get user by email (path param)
+    path("internal/", include((internal_patterns, "users"), namespace="internal")),
 ]
