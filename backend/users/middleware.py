@@ -18,7 +18,10 @@ class InternalJWTAuthMiddleware:
                 payload = jwt.decode(
                     token, settings.INTERNAL_JWT_SECRET_KEY, algorithms=["HS256"]
                 )
-                if payload.get("service") != "sugarfoot":
+                allowed_services = getattr(
+                    settings, "INTERNAL_JWT_ALLOWED_SERVICES", ["sugarfoot"]
+                )
+                if payload.get("service") not in allowed_services:
                     return JsonResponse({"error": "Unauthorized"}, status=401)
             except jwt.ExpiredSignatureError:
                 return JsonResponse({"error": "Token expired"}, status=401)
