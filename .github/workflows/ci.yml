@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
       - name: Ensure .env exists
         run: |
           if [ ! -f .env ]; then cp .env.example .env; fi
-
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
 
       - name: 🧪 Run tests in Docker
         run: |
