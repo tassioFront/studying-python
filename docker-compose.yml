@@ -25,7 +25,6 @@ services:
       - db
     env_file:
       - .env
-      - .env.example
     environment:
       - DB_NAME=core
       - DB_USER=core
@@ -45,7 +44,6 @@ services:
       - ./backend:/app
     env_file:
       - .env
-      - .env.example
     environment:
       - PYTHONUNBUFFERED=1
       - SECRET_KEY=your-secret-key-for-development
