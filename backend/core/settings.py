@@ -65,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "users.middleware.InternalJWTAuthMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -170,3 +171,9 @@ SIMPLE_JWT = {
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
 }
+
+
+INTERNAL_JWT_SECRET_KEY = config("INTERNAL_JWT_SECRET_KEY", default="internal-default")
+INTERNAL_JWT_ALLOWED_SERVICES = config(
+    "INTERNAL_JWT_ALLOWED_SERVICES", default="sugarfoot"
+).split(",")

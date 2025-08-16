@@ -15,6 +15,10 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
 
+      - name: Ensure .env exists
+        run: |
+          if [ ! -f .env ]; then cp .env.example .env; fi
+
       - name: 🧪 Run tests in Docker
         run: |
           docker compose -f docker-compose.ci.yml run --rm ci-test
@@ -35,6 +39,10 @@ jobs:
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
+
+      - name: Ensure .env exists
+        run: |
+          if [ ! -f .env ]; then cp .env.example .env; fi
 
       - name: 🔨 Build and test main Docker image
         run: |
