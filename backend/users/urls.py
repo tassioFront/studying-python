@@ -6,6 +6,7 @@ internal_patterns = [
     path(
         "by-email/<str:email>/", views_internal.get_user_by_email, name="user-by-email"
     ),
+    path("register/", views.UserRegistrationView.as_view(), name="user-register"),
     # Add more internal endpoints here
 ]
 
@@ -14,7 +15,6 @@ urlpatterns = [
     path("", views.UserListCreateView.as_view(), name="user-list-create"),
     path("<uuid:pk>/", views.UserDetailView.as_view(), name="user-detail"),
     # User self-service authentication endpoints
-    path("register/", views.UserRegistrationView.as_view(), name="user-register"),
     path("login/", views.UserLoginView.as_view(), name="user-login"),
     path(
         "set-password/",
