@@ -12,17 +12,17 @@ class InternalJWTAuthMiddleware:
         if request.path.startswith("/api/users/internal/"):
             auth_header = request.headers.get("Authorization", "")
             if not auth_header.startswith("Bearer "):
-                return JsonResponse({"error": "Unauthorized"}, status=401)
+                return JsonResponse({"error": "Unauthorized request"}, status=401)
             token = auth_header.split(" ")[1]
             try:
                 payload = jwt.decode(
                     token, settings.INTERNAL_JWT_SECRET_KEY, algorithms=["HS256"]
                 )
                 allowed_services = getattr(
-                    settings, "INTERNAL_JWT_ALLOWED_SERVICES", ["sugarfoot"]
+                    settings, "INTERNAL_JWT_ALLOWED_SERVICES", ["sugarfoot", "gary"]
                 )
                 if payload.get("service") not in allowed_services:
-                    return JsonResponse({"error": "Unauthorized"}, status=401)
+                    return JsonResponse({"error": "Service unauthorized"}, status=401)
             except jwt.ExpiredSignatureError:
                 return JsonResponse({"error": "Token expired"}, status=401)
             except jwt.InvalidTokenError:

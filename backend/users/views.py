@@ -65,19 +65,6 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
         )
 
 
-# User Authentication Views
-class UserRegistrationView(generics.CreateAPIView):
-    """
-    User registration endpoint - allows users to self-register
-    POST /api/users/register/ - Register new user with password
-    """
-
-    queryset = User.objects.all()
-    serializer_class = UserRegistrationSerializer
-    permission_classes = [permissions.AllowAny]
-
-    def perform_create(self, serializer):
-        serializer.save(date_joined=timezone.now())
 
 
 class UserLoginView(generics.GenericAPIView):

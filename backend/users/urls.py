@@ -6,7 +6,7 @@ internal_patterns = [
     path(
         "by-email/<str:email>/", views_internal.get_user_by_email, name="user-by-email"
     ),
-    path("register/", views.UserRegistrationView.as_view(), name="user-register"),
+    path("register/", views_internal.UserRegistrationView.as_view(), name="user-register"),
     # Add more internal endpoints here
 ]
 
