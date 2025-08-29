@@ -1,22 +1,20 @@
 from urllib.parse import unquote
-from django.utils import timezone
 
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from rest_framework import generics, permissions, status
+from django.utils import timezone
 
-from rest_framework import status
+from rest_framework import generics, permissions, status
 from rest_framework.decorators import (
     api_view,
     authentication_classes,
     permission_classes,
 )
-
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 
 from .models import User
-from .serializers import (UserSerializer, UserRegistrationSerializer)
+from .serializers import UserRegistrationSerializer, UserSerializer
 
 
 @api_view(["GET"])

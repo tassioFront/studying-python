@@ -13,7 +13,6 @@ from .serializers import (
     UserCreateSerializer,
     UserInitialPasswordSerializer,
     UserPasswordUpdateSerializer,
-    UserRegistrationSerializer,
     UserSerializer,
     UserTokenValidationSerializer,
     UserUpdateSerializer,
@@ -63,8 +62,6 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Response(
             {"message": "User deactivated successfully"}, status=status.HTTP_200_OK
         )
-
-
 
 
 class UserLoginView(generics.GenericAPIView):
