@@ -25,14 +25,6 @@ services:
       - db
     env_file:
       - .env
-    environment:
-      - DB_NAME=core
-      - DB_USER=core
-      - DB_PASSWORD=core
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DEBUG=1
-      - SECRET_KEY=your-secret-key-for-development
 
   test:
     build:
@@ -46,11 +38,6 @@ services:
       - .env
     environment:
       - PYTHONUNBUFFERED=1
-      - SECRET_KEY=your-secret-key-for-development
-      - DEBUG=1
-      - DB_PASSWORD=core
-      - DB_HOST=db
-      - DB_PORT=5432
 
 volumes:
   postgres_data:
