@@ -190,7 +190,7 @@ class UserAuthenticationTestCase(APITestCase):
 
     def setUp(self):
         """Set up test data before each test"""
-        self.register_url = "/api/users/register/"
+        self.register_url = "/api/users/internal/register/"
         self.login_url = "/api/users/login/"
         self.profile_url = "/api/users/me/"
         self.password_url = "/api/users/me/password/"

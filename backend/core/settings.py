@@ -173,7 +173,9 @@ SIMPLE_JWT = {
 }
 
 
-INTERNAL_JWT_SECRET_KEY = config("INTERNAL_JWT_SECRET_KEY", default="internal-default")
+INTERNAL_JWT_SECRET_KEY = config(
+    "INTERNAL_JWT_SECRET_KEY", default="your-internal-jwt-secret-key"
+)
 INTERNAL_JWT_ALLOWED_SERVICES = config(
-    "INTERNAL_JWT_ALLOWED_SERVICES", default="sugarfoot"
+    "INTERNAL_JWT_ALLOWED_SERVICES", default="sugarfoot,gary"
 ).split(",")

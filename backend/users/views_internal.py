@@ -2,8 +2,9 @@ from urllib.parse import unquote
 
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from django.utils import timezone
 
-from rest_framework import status
+from rest_framework import generics, permissions, status
 from rest_framework.decorators import (
     api_view,
     authentication_classes,
@@ -13,7 +14,7 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserRegistrationSerializer, UserSerializer
 
 
 @api_view(["GET"])
@@ -36,3 +37,19 @@ def get_user_by_email(request, email):
     except User.DoesNotExist:
         raise NotFound("User not found.")
     return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
+
+
+# User Authentication Views
+class UserRegistrationView(generics.CreateAPIView):
+    """
+    User registration endpoint - allows users to self-register
+    POST /api/users/register/ - Register new user with password
+    """
+
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer
+    authentication_classes = []
+    permission_classes = [permissions.AllowAny]
+
+    def perform_create(self, serializer):
+        serializer.save(date_joined=timezone.now())
