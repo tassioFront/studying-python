@@ -14,6 +14,7 @@ class InternalJWTAuthMiddleware:
             if not auth_header.startswith("Bearer "):
                 return JsonResponse({"error": "Unauthorized request"}, status=401)
             token = auth_header.split(" ")[1]
+            print(settings.INTERNAL_JWT_SECRET_KEY, settings.INTERNAL_JWT_ALLOWED_SERVICES)
             try:
                 payload = jwt.decode(
                     token, settings.INTERNAL_JWT_SECRET_KEY, algorithms=["HS256"]
