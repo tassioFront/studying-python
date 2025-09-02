@@ -59,6 +59,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             "password_confirm",
             "email_notifications",
             "type",
+            "id"
         ]
 
     def validate_email(self, value):
