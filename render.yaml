@@ -11,10 +11,6 @@ services:
     envVars:
       - key: DEBUG
         value: false
-      - key: SECRET_KEY
-        generateValue: true
-      - key: ALLOWED_HOSTS
-        value: "*"
       - key: SUPERUSER_EMAIL
         value: "tassio72@hotmail.com"
       - key: SUPERUSER_NAME
